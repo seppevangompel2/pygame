@@ -22,7 +22,8 @@ while run:
     x += speed
     if x + 50 > 800:
         speed = -speed
-
+    if x - 50 < 0:
+        speed = -speed
 
     win.fill((0, 0, 0))
 
