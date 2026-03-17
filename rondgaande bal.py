@@ -7,6 +7,7 @@ win = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 
 x = 50
+y = 200
 speed = 5
 
 run = True
@@ -19,6 +20,8 @@ while run:
 
 
     x += speed
+    if x + 50 > 800:
+        speed = -speed
 
 
     win.fill((0, 0, 0))
