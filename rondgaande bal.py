@@ -17,13 +17,23 @@ run = True
 while run:
     clock.tick(60)
 
-    for e in pygame.event.get():
-        if e.type == QUIT or (e.type == KEYDOWN and e.key == K_BACKSPACE):
+    for event in pygame.event.get():
+        if event.type == QUIT or (event.type == KEYDOWN and event.key == K_BACKSPACE):
             run = False
 
+        if event.type == KEYDOWN:
+            if event.key == K_UP:
+                speed_x += 1
+                speed_y += 1
+            elif event.key == K_DOWN:
+                speed_x -= 1
+                speed_y -= 1
+
+    # Beweging
     x += speed_x
     y += speed_y
 
+    # Botsingen
     if x + radius > 800 or x - radius < 0:
         speed_x *= -1
 
@@ -31,9 +41,7 @@ while run:
         speed_y *= -1
 
     win.fill((0, 0, 0))
-
     pygame.draw.circle(win, (255, 0, 0), (x, y), radius)
-
     pygame.display.flip()
 
 pygame.quit()
