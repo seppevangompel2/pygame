@@ -6,6 +6,10 @@ pygame.init()
 win = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 
+
+background = pygame.image.load("wallpaper.png")
+background = pygame.transform.scale(background, (800, 600))
+
 x = 300
 y = 200
 radius = 50
@@ -29,6 +33,7 @@ while run:
                 speed_x -= 1
                 speed_y -= 1
 
+
     x += speed_x
     y += speed_y
 
@@ -39,14 +44,15 @@ while run:
 
 
     speed = abs(speed_x) + abs(speed_y)
-
-
     if speed > 10:
         color = (255, 0, 0)
     else:
-        color = (0, 0, 255) 
+        color = (0, 0, 255)
 
-    win.fill((0, 0, 0))
+
+    win.blit(background, (0, 0))
+
+
     pygame.draw.circle(win, color, (x, y), radius)
 
     pygame.display.flip()
