@@ -29,19 +29,26 @@ while run:
                 speed_x -= 1
                 speed_y -= 1
 
-    # Beweging
     x += speed_x
     y += speed_y
 
-    # Botsingen
     if x + radius > 800 or x - radius < 0:
         speed_x *= -1
-
     if y + radius > 600 or y - radius < 0:
         speed_y *= -1
 
+
+    speed = abs(speed_x) + abs(speed_y)
+
+
+    if speed > 10:
+        color = (255, 0, 0)
+    else:
+        color = (0, 0, 255) 
+
     win.fill((0, 0, 0))
-    pygame.draw.circle(win, (255, 0, 0), (x, y), radius)
+    pygame.draw.circle(win, color, (x, y), radius)
+
     pygame.display.flip()
 
 pygame.quit()
