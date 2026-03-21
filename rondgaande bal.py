@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 
 pygame.init()
+pygame.mixer.init()
 
 win = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
@@ -9,6 +10,9 @@ clock = pygame.time.Clock()
 
 background = pygame.image.load("wallpaper.png")
 background = pygame.transform.scale(background, (800, 600))
+
+
+collision_sound = pygame.mixer.Sound("half-life-crowbar.mp3")
 
 x = 300
 y = 200
@@ -37,10 +41,14 @@ while run:
     x += speed_x
     y += speed_y
 
+
     if x + radius > 800 or x - radius < 0:
         speed_x *= -1
+        collision_sound.play()
+
     if y + radius > 600 or y - radius < 0:
         speed_y *= -1
+        collision_sound.play()
 
 
     speed = abs(speed_x) + abs(speed_y)
@@ -51,8 +59,6 @@ while run:
 
 
     win.blit(background, (0, 0))
-
-
     pygame.draw.circle(win, color, (x, y), radius)
 
     pygame.display.flip()
